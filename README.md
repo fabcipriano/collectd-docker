@@ -18,13 +18,20 @@ Simple [CollectD](https://github.com/collectd/collectd) instance running within 
 ```
 docker pull revett/collectd
 ```
+## Build Container
+
+```
+docker build --rm -t facio/collectd .
+```
 
 ## Usage
 
 Start the container:
 
 ```
-docker run -d -e CONFIG_TYPE=influxdb -e EP_HOST=example.com -e EP_PORT=2003 revett/collectd
+docker run --name collectd-docker -d -e CONFIG_TYPE=riemann -e EP_HOST=asimov -e EP_PORT=5555 -v /home/fabiano/dev/collectd-docker/default-collectd.conf:/etc/collectd/collectd.conf facio/collectd
+
+docker run --name collectd-docker -d -v /home/fabiano/dev/collectd-docker/default-collectd.conf:/etc/collectd/collectd.conf facio/collectd
 ```
 
 ### Environment Variables
